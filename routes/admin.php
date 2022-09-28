@@ -12,18 +12,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-    Route::group(['middleware' => ['auth:admin'],
-                  'namespace' => 'Admin',
+    Route::group(['namespace' => 'Admin',
                   'prefix'  =>  'admin',
-                  'as' => 'admin.'], function () {
-
-        Route::get('/login', 'LoginController@showLoginForm')->name('login');
+                  'as' => 'admin.'
+                 ], function () {
+        Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login')->name('login.post');
+
+        Route::middleware(['auth:admin'])->group(function (){
+            Route::get('/', function () {
+                return view('admin.dashboard.index');
+            })->name('dashboard');
+        });
+
+
         Route::get('logout', 'LoginController@logout')->name('logout');
 
-        Route::get('/', function () {
-            return view('admin.dashboard.index');
-        })->name('dashboard');
+
 
 
     });
