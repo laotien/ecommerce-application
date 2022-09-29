@@ -16,19 +16,18 @@
                   'prefix'  =>  'admin',
                   'as' => 'admin.'
                  ], function () {
+
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login')->name('login.post');
+        Route::get('logout', 'LoginController@logout')->name('logout');
 
         Route::middleware(['auth:admin'])->group(function (){
             Route::get('/', function () {
                 return view('admin.dashboard.index');
             })->name('dashboard');
+
+            Route::get('/settings', 'SettingController@index')->name('settings');
+            Route::post('/settings', 'SettingController@update')->name('settings.update');
         });
-
-
-        Route::get('logout', 'LoginController@logout')->name('logout');
-
-
-
 
     });
