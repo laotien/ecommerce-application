@@ -50,6 +50,15 @@
 
             });
 
+            Route::group(['prefix' => 'brands',  'as' => 'brands.'], function() {
+                Route::get('/', 'BrandController@index')->name('index');
+                Route::get('/create', 'BrandController@create')->name('create');
+                Route::post('/store', 'BrandController@store')->name('store');
+                Route::get('/{id}/edit', 'BrandController@edit')->name('edit');
+                Route::post('/update', 'BrandController@update')->name('update');
+                Route::get('/{id}/delete', 'BrandController@delete')->name('delete');
+
+            });
         });
 
     });
