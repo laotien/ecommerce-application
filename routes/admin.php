@@ -28,6 +28,17 @@
 
             Route::get('/settings', 'SettingController@index')->name('settings');
             Route::post('/settings', 'SettingController@update')->name('settings.update');
+
+            Route::group(['prefix' => 'categories', 'as' => 'categories.'], function() {
+
+                Route::get('/', 'CategoryController@index')->name('index');
+                Route::get('/create', 'CategoryController@create')->name('create');
+                Route::post('/store', 'CategoryController@store')->name('store');
+                Route::get('/{id}/edit', 'CategoryController@edit')->name('edit');
+                Route::post('/update', 'CategoryController@update')->name('update');
+                Route::get('/{id}/delete', 'CategoryController@delete')->name('delete');
+
+            });
         });
 
     });
