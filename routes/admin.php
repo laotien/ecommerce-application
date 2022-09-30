@@ -39,6 +39,17 @@
                 Route::get('/{id}/delete', 'CategoryController@delete')->name('delete');
 
             });
+
+            Route::group(['prefix'  =>   'attributes', 'as' => 'attributes.'], function() {
+                Route::get('/', 'AttributeController@index')->name('index');
+                Route::get('/create', 'AttributeController@create')->name('create');
+                Route::get('/{id}/edit', 'AttributeController@edit')->name('edit');
+                Route::post('/store', 'AttributeController@store')->name('store');
+                Route::post('/update', 'AttributeController@update')->name('update');
+                Route::get('/{id}/delete', 'AttributeController@delete')->name('delete');
+
+            });
+
         });
 
     });
