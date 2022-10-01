@@ -59,6 +59,19 @@
                 Route::get('/{id}/delete', 'BrandController@delete')->name('delete');
 
             });
+
+            Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+
+                Route::get('/', 'ProductController@index')->name('index');
+                Route::get('/create', 'ProductController@create')->name('create');
+                Route::post('/store', 'ProductController@store')->name('store');
+                Route::get('/edit/{id}', 'ProductController@edit')->name('edit');
+                Route::post('/update', 'ProductController@update')->name('update');
+
+                Route::post('images/upload', 'ProductImageController@upload')->name('images.upload');
+                Route::get('images/{id}/delete', 'ProductImageController@delete')->name('images.delete');
+
+            });
         });
 
     });
