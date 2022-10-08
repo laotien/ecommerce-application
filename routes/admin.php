@@ -72,6 +72,11 @@
                 Route::get('images/{id}/delete', 'ProductImageController@delete')->name('images.delete');
 
             });
+
+            Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
+                Route::get('/', 'OrderController@index')->name('index');
+                Route::get('/{order}/show', 'OrderController@show')->name('show');
+            });
         });
 
     });

@@ -38,4 +38,16 @@
          * @return bool
          */
         public function deleteCategory($id);
+
+        /**
+         * @return mixed
+         */
+        public function freeList();
+
+        /**
+        * @param $slug
+        * @return mixed
+        */
+        public function findBySlug($slug);
+
     }

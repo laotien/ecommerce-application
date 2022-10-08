@@ -37,7 +37,7 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        $categories = $this->categoryRepository->listCategories('id', 'asc');
+        $categories = $this->categoryRepository->freeList();
 
         $this->setPageTitle('Categories', 'Create Category');
         return view('admin.categories.create', compact('categories'));
@@ -116,4 +116,5 @@ class CategoryController extends BaseController
         }
         return $this->responseRedirect('admin.categories.index', 'Category deleted successfully' ,'success',false, false);
     }
+
 }

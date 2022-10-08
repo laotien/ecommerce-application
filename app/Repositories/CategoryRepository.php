@@ -134,4 +134,29 @@
 
             return $category;
         }
+
+
+        /**
+         * @return mixed
+         */
+        public function freeList()
+        {
+            return Category::orderByRaw('-name ASC')
+                ->get()
+                ->setIndent('|-- ')
+                ->nest()
+                ->listsFlattened('name');
+        }
+
+        /**
+         * @param $slug
+         * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|mixed|object|null
+         */
+        public function findBySlug($slug)
+        {
+            return Category::with('products')
+                ->where('slug', $slug)
+                ->where('menu', 1)
+                ->first();
+        }
     }

@@ -122,5 +122,12 @@
             return $product;
         }
 
-
+        /**
+         * @param $slug
+         * @return mixed
+         */
+        public function findProductBySlug($slug)
+        {
+            return Product::where('slug', $slug)->first();
+        }
     }
